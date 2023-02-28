@@ -11,7 +11,9 @@ jobs:
       - uses: actions/checkout@v3
       - name: Get current date
         id: date
-        run: echo "::set-output name=date::$(date +'%Y%m%d')"
+        run: echo "::set-output name=date::$('%Y%m%d')"
+      - name: Displaying tag
+        run: echo ${{ steps.date.outputs.date }}
       - name: Push tag
         uses: anothrNick/github-tag-action@1.55.0
         env:
