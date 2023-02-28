@@ -19,4 +19,4 @@ jobs:
         uses: anothrNick/github-tag-action@1.55.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CUSTOM_TAG: ${{ steps.date.outputs.date }}-main
+          CUSTOM_TAG: ${{ steps.date.outputs.date }}-${GITHUB_REF##*/}
