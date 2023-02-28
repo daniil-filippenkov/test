@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Generating tag
-        run: echo "tag=${GITHUB_REF##*/}-$(date +'%m.%d.%Y-%M.%S')" >> $GITHUB_ENV
+        run: echo "tag=${GITHUB_REF##*/}-$(date +'%m%d%Y-%M%S')" >> $GITHUB_ENV
       - name: Push tag
         uses: anothrNick/github-tag-action@1.55.0
         env:
