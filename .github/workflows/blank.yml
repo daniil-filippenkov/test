@@ -10,6 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Generating tag
+        id: tagging
         run: echo "::set-output name=tag::$(date +'%Y-%m-%d')${GITHUB_REF##*/}"
       - name: Displaying tag
         run: |
