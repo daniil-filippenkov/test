@@ -8,7 +8,6 @@ jobs:
   tagging:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
       - name: Generating tag
         run: echo "tag=$(date +'%Y%m%d.%H%M')-${GITHUB_REF##*/}" >> $GITHUB_ENV
       - name: Push tag
