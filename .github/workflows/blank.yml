@@ -9,14 +9,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Get current date
-        id: date
-        run: echo "::set-output name=date::$(date +'%Y%m%d')"
+      - name: Generating tag
+        id: tag
+        run: echo "::set-output name=tag::$(${GITHUB_REF##*/} +'%Y%m%d')"
       - name: Displaying tag
         run: |
-          echo ${{ steps.date.outputs.date }}-${GITHUB_REF##*/}
+          echo ${{ steps.date.outputs.tag }}
       - name: Push tag
         uses: anothrNick/github-tag-action@1.55.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CUSTOM_TAG: ${{ steps.date.outputs.date }}-${{GITHUB_REF##*/}}
+          CUSTOM_TAG: ${{ steps.date.outputs.tag }}
