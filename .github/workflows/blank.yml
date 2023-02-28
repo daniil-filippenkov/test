@@ -11,13 +11,12 @@ jobs:
       - uses: actions/checkout@v3
       - name: Generating tag
         id: tagging
-        run: echo "::set-output name=tag::$(date +'%Y-%m-%d')${GITHUB_REF##*/}"
+        run: echo "tag=$(date +'%Y%m%d.%M')-${GITHUB_REF##*/}" >> $GITHUB_ENV
       - name: Displaying tag
         run: |
-          echo ${{ steps.tagging.outputs.tag }}
-          echo ${GITHUB_REF##*/}
+          echo ${{ env.tag }}
       - name: Push tag
         uses: anothrNick/github-tag-action@1.55.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CUSTOM_TAG: ${{ steps.tagging.outputs.tag }}
+          CUSTOM_TAG: ${{ env.tag }}
